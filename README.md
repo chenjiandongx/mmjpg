@@ -1,4 +1,4 @@
-## 妹子写真套图爬虫
+## 美女写真套图爬虫
 
 
 爬取网站 : [http://www.mmjpg.com](http://www.mmjpg.com)  

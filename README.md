@@ -8,5 +8,5 @@
 ![](https://img.js.cn/images/2017/03/28/e707e956e43459cc0f91a0b430769cba.png)  
 
 * 采用多进程，8M的网速基本能达到满速  
-![](https://img.js.cn/images/2017/03/28/b5d87fd6dd9835a3bff7693d395f08ce.png)
+![](https://img.js.cn/images/2017/03/28/e61ff6f2683f13054c8d6da2c3a8c4e8.png)
 

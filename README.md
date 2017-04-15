@@ -6,10 +6,10 @@
 
 * 爬取全站 950 套图片，共3.86G 
 
-  ![](http://omdy5v36u.bkt.clouddn.com/mmjpg_1.png) 
+  ![](http://oog4yfyu0.bkt.clouddn.com/mmjpg_1.png) 
 
 
 * 使用多进程，8M 的网速基本满速  
 
-  ![](http://omdy5v36u.bkt.clouddn.com/mmjpg_2.png)
+  ![](http://oog4yfyu0.bkt.clouddn.com/mmjpg_2.png)
 

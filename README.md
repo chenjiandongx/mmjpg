@@ -6,9 +6,9 @@
 
 * 爬取全站 950 套图片，共3.86G 
 
-  ![](http://ww1.sinaimg.cn/large/8b0e6873gy1fenhtskiypj20bp090mx5.jpg) 
+  ![](http://omdy5v36u.bkt.clouddn.com/mmjpg_1.png) 
 
-* 采用多进程，8M 的网速基本满速  
+* 使用多进程，8M 的网速基本满速  
 
-  ![](http://ww1.sinaimg.cn/large/8b0e6873gy1fenhtt18l9j20sv0hm49g.jpg)
+  ![](http://omdy5v36u.bkt.clouddn.com/mmjpg_2.png)
 

@@ -2,13 +2,13 @@
 
 
 爬取网站 : [http://www.mmjpg.com](http://www.mmjpg.com)  
-* 欢迎**Fork**和 **Star**  
+* 欢迎 **Fork** 和 **Star**  
 
-* 该网站共有900多套图吧，测试一次爬取了800套2.9G  
+* 爬取全站 950 套图片，共3.86G 
 
-  ![](https://img.js.cn/images/2017/03/28/e707e956e43459cc0f91a0b430769cba.png)  
+  ![](http://ww1.sinaimg.cn/large/8b0e6873gy1fenhtskiypj20bp090mx5.jpg) 
 
 * 采用多进程，8M的网速基本能达到满速  
 
-  ![](https://img.js.cn/images/2017/03/28/e61ff6f2683f13054c8d6da2c3a8c4e8.png)
+  ![](http://ww1.sinaimg.cn/large/8b0e6873gy1fenhtt18l9j20sv0hm49g.jpg)
 

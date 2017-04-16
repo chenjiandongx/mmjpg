@@ -5,19 +5,23 @@ from multiprocessing import Pool, cpu_count
 import requests
 from bs4 import BeautifulSoup
 
+headers = {'X-Requested-With': 'XMLHttpRequest',
+           'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) '
+                         'Chrome/56.0.2924.87 Safari/537.36'}
 
-headers = {'User-Agent':"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1"
-        " (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1"}
 
-
-def save_pic(img_src, pic_cnt):
+def save_pic(pic_src, pic_cnt):
     """" 
     将图片下载到本地文件夹 
     """
-    img = requests.get(img_src, headers=headers, timeout=10)
-    with open("pic_cnt_" + str(pic_cnt + 1) + '.jpg', 'ab') as f:
-        f.write(img.content)
-        print("pic_cnt_" + str(pic_cnt + 1) + '.jpg')
+    try:
+        img = requests.get(pic_src, headers=headers, timeout=10)
+        with open("pic_cnt_" + str(pic_cnt + 1) + '.jpg', 'ab') as f:
+            f.write(img.content)
+            print("pic_cnt_" + str(pic_cnt + 1) + '.jpg')
+
+    except Exception as e:
+        print(e)
 
 
 def make_dir(folder_name):
@@ -25,10 +29,9 @@ def make_dir(folder_name):
     新建套图文件夹并切换到该目录下
     """
     path = os.path.join(r"E:\mmjpg", folder_name)
-    is_exists = os.path.exists(path)
 
     # 如果目录已经存在就不用再次爬取了，去重，提高效率
-    if not is_exists:
+    if not os.path.exists(path):
         os.makedirs(path)
         print(path)
         os.chdir(path)
@@ -43,8 +46,6 @@ lock = threading.Lock()     # 全局资源锁
 def urls_crawler(url):
     """ 
     爬虫入口，主要爬取操作
-    本来打算爬取个代理ip网站的代理ip维护一个代理池的
-    后来发现一次过，没被服务器ban掉，所以就算了...
     """
     try:
         respone = requests.get(url, headers=headers, timeout=10).text
@@ -57,8 +58,9 @@ def urls_crawler(url):
                 max_count = BeautifulSoup(respone, 'lxml').find('div', class_='page').find_all('a')[-2].get_text()
                 # 套图页面
                 page_urls = [url + "/" + str(i) for i in range(1, int(max_count) + 1)]
+                # 图片地址
+                img_urls = []
 
-                img_urls = []       # 图片地址
                 for index, page_url in enumerate(page_urls):
                     result = requests.get(page_url, headers=headers, timeout=10).text
 

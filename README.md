@@ -1,6 +1,6 @@
-## 美女写真套图爬虫
+# 美女写真套图爬虫
 
-
+### 传送门：[美女写真套图爬虫（二）](https://github.com/chenjiandongx/mzitu)  
 爬取网站 : [http://www.mmjpg.com](http://www.mmjpg.com)  
 * 欢迎 **Fork** 和 **Star**  
 

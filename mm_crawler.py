@@ -11,9 +11,8 @@ headers = {'X-Requested-With': 'XMLHttpRequest',
 
 
 def save_pic(pic_src, pic_cnt):
-    """
-    将图片下载到本地文件夹
-    """
+    """ 将图片下载到本地文件夹 """
+
     try:
         img = requests.get(pic_src, headers=headers, timeout=10)
         with open("pic_cnt_" + str(pic_cnt + 1) + '.jpg', 'ab') as f:
@@ -25,9 +24,8 @@ def save_pic(pic_src, pic_cnt):
 
 
 def make_dir(folder_name):
-    """
-    新建套图文件夹并切换到该目录下
-    """
+    """ 新建套图文件夹并切换到该目录下 """
+
     path = os.path.join(r"E:\mmjpg", folder_name)
 
     # 如果目录已经存在就不用再次爬取了，去重，提高效率
@@ -44,9 +42,8 @@ def make_dir(folder_name):
 lock = threading.Lock()     # 全局资源锁
 
 def urls_crawler(url):
-    """
-    爬虫入口，主要爬取操作
-    """
+    """ 爬虫入口，主要爬取操作 """
+
     try:
         respone = requests.get(url, headers=headers, timeout=10).text
         # 套图名，也作为文件夹名

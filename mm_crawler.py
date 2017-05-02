@@ -15,9 +15,10 @@ def save_pic(pic_src, pic_cnt):
 
     try:
         img = requests.get(pic_src, headers=headers, timeout=10)
-        with open("pic_cnt_" + str(pic_cnt + 1) + '.jpg', 'ab') as f:
+        imgname = "pic_cnt_{}.jpg".format(pic_cnt + 1)
+        with open(imgname, 'ab') as f:
             f.write(img.content)
-            print("pic_cnt_" + str(pic_cnt + 1) + '.jpg')
+            print(imgname)
 
     except Exception as e:
         print(e)
@@ -28,7 +29,7 @@ def make_dir(folder_name):
 
     path = os.path.join(r"E:\mmjpg", folder_name)
 
-    # 如果目录已经存在就不用再次爬取了，去重，提高效率
+    # 如果目录已经存在就不用再次爬取了，去重，提高效率。存在返回 False，否则反之
     if not os.path.exists(path):
         os.makedirs(path)
         print(path)
@@ -46,13 +47,13 @@ def delete_empty_dir(dir):
     if os.path.exists(dir):
         if os.path.isdir(dir):
             for d in os.listdir(dir):
-                path = os.path.join(dir, d)
+                path = os.path.join(dir, d)     # 组装下一级地址
                 if os.path.isdir(path):
-                    delete_empty_dir(path)
+                    delete_empty_dir(path)      # 递归删除空文件夹
 
         if not os.listdir(dir):
             os.rmdir(dir)
-            print("remove the empty dir: " + dir)
+            print("remove the empty dir: {}".format(dir))
     else:
         print("Please start your performance!")
 
@@ -96,13 +97,12 @@ def urls_crawler(url):
 
 if __name__ == "__main__":
 
-
-    urls = ['http://mmjpg.com/mm/{cnt}'.format(cnt=str(cnt)) for cnt in range(1, 953)]
+    urls = ['http://mmjpg.com/mm/{cnt}'.format(cnt=cnt) for cnt in range(1, 953)]
     pool = Pool(processes=cpu_count())
     try:
         delete_empty_dir(r"E:\mmjpg")
         results = pool.map(urls_crawler, urls)
-    except Exception as exception:
+    except Exception as e:
         time.sleep(30)
         delete_empty_dir(r"E:\mmjpg")
         results = pool.map(urls_crawler, urls)

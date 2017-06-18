@@ -32,9 +32,8 @@ def make_dir(folder_name):
         print(path)
         os.chdir(path)
         return True
-    else:
-        print("This folder have been created!")
-        return False
+    print("Folder has existed!")
+    return False
 
 
 def delete_empty_dir(dir):
@@ -83,14 +82,13 @@ def urls_crawler(url):
     except Exception as e:
         print(e)
 
-
 if __name__ == "__main__":
     urls = ['http://mmjpg.com/mm/{cnt}'.format(cnt=cnt) for cnt in range(1, 953)]
     pool = Pool(processes=cpu_count())
     try:
         delete_empty_dir(dir_path)
-        results = pool.map(urls_crawler, urls)
+        pool.map(urls_crawler, urls)
     except Exception as e:
         time.sleep(30)
         delete_empty_dir(dir_path)
-        results = pool.map(urls_crawler, urls)
+        pool.map(urls_crawler, urls)

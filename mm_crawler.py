@@ -1,15 +1,22 @@
-#coding=utf-8
+#!/usr/bin/env python
+# coding=utf-8
+
 import os
 import time
 import threading
 from multiprocessing import Pool, cpu_count
+
 import requests
 from bs4 import BeautifulSoup
 
-headers = {'X-Requested-With': 'XMLHttpRequest',
-           'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) '
-                         'Chrome/56.0.2924.87 Safari/537.36'}
+headers = {
+    'X-Requested-With': 'XMLHttpRequest',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) '
+                  'Chrome/56.0.2924.87 Safari/537.36',
+    'Referer': "http://www.mmjpg.com"
+}
 dir_path = r"E:\mmjpg"      # 下载图片保存路径
+
 
 def save_pic(pic_src, pic_cnt):
     """ 将图片下载到本地文件夹 """
@@ -52,6 +59,7 @@ def delete_empty_dir(dir):
         print("Please start your performance!") # 请开始你的表演
 
 lock = threading.Lock()     # 全局资源锁
+
 
 def urls_crawler(url):
     """ 爬虫入口，主要爬取操作 """

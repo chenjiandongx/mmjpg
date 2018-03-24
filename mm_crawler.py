@@ -20,7 +20,8 @@ DIR_PATH = r"E:\mmjpg"      # 下载图片保存路径
 
 
 def save_pic(pic_src, pic_cnt):
-    """ 将图片下载到本地文件夹
+    """
+    将图片下载到本地文件夹
     """
     try:
         img = requests.get(pic_src, headers=HEADERS, timeout=10)
@@ -33,7 +34,8 @@ def save_pic(pic_src, pic_cnt):
 
 
 def make_dir(folder_name):
-    """ 新建套图文件夹并切换到该目录下
+    """
+    新建套图文件夹并切换到该目录下
     """
     path = os.path.join(DIR_PATH, folder_name)
     # 如果目录已经存在就不用再次爬取了，去重，提高效率。存在返回 False，否则反之
@@ -47,7 +49,8 @@ def make_dir(folder_name):
 
 
 def delete_empty_dir(dir):
-    """ 如果程序半路中断的话，可能存在已经新建好文件夹但是仍没有下载的图片的情况
+    """
+    如果程序半路中断的话，可能存在已经新建好文件夹但是仍没有下载的图片的情况
     但此时文件夹已经存在所以会忽略该套图的下载，此时要删除空文件夹
     """
     if os.path.exists(dir):
@@ -67,7 +70,8 @@ lock = threading.Lock()     # 全局资源锁
 
 
 def urls_crawler(url):
-    """ 爬虫入口，主要爬取操作
+    """
+    爬虫入口，主要爬取操作
     """
     try:
         r = requests.get(url, headers=HEADERS, timeout=10).text

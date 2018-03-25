@@ -4,13 +4,11 @@
 import os
 import json
 
-PATH = "https://raw.githubusercontent.com/chenjiandongx/mmjpg/master/yummy/{}"
-
 
 def file_name(file_dir):
     for root, dirs, files in os.walk(file_dir):
         for file in files:
-            yield PATH.format(file)
+            yield file
 
 
 def gen_json(paths):

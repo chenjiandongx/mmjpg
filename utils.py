@@ -12,9 +12,7 @@ def file_name(file_dir):
 
 
 def gen_json(paths):
-    d = []
-    for path in paths:
-        d.append({"imgSrc": path})
+    d = [{"imgSrc": path} for path in paths]
     with open("yummy.json", "w+") as f:
         json.dump(d, f)
 

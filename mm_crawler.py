@@ -25,10 +25,10 @@ def save_pic(pic_src, pic_cnt):
     """
     try:
         img = requests.get(pic_src, headers=HEADERS, timeout=10)
-        imgname = "pic_cnt_{}.jpg".format(pic_cnt + 1)
-        with open(imgname, 'ab') as f:
+        img_name = "pic_cnt_{}.jpg".format(pic_cnt + 1)
+        with open(img_name, 'ab') as f:
             f.write(img.content)
-            print(imgname)
+            print(img_name)
     except Exception as e:
         print(e)
 
@@ -48,20 +48,20 @@ def make_dir(folder_name):
     return False
 
 
-def delete_empty_dir(dir):
+def delete_empty_dir(save_dir):
     """
-    如果程序半路中断的话，可能存在已经新建好文件夹但是仍没有下载的图片的情况
-    但此时文件夹已经存在所以会忽略该套图的下载，此时要删除空文件夹
+    如果程序半路中断的话，可能存在已经新建好文件夹但是仍没有下载的图片的
+    情况但此时文件夹已经存在所以会忽略该套图的下载，此时要删除空文件夹
     """
-    if os.path.exists(dir):
-        if os.path.isdir(dir):
-            for d in os.listdir(dir):
-                path = os.path.join(dir, d)     # 组装下一级地址
+    if os.path.exists(save_dir):
+        if os.path.isdir(save_dir):
+            for d in os.listdir(save_dir):
+                path = os.path.join(save_dir, d)     # 组装下一级地址
                 if os.path.isdir(path):
                     delete_empty_dir(path)      # 递归删除空文件夹
-        if not os.listdir(dir):
-            os.rmdir(dir)
-            print("remove the empty dir: {}".format(dir))
+        if not os.listdir(save_dir):
+            os.rmdir(save_dir)
+            print("remove the empty dir: {}".format(save_dir))
     else:
         print("Please start your performance!")     # 请开始你的表演
 
@@ -114,7 +114,7 @@ if __name__ == "__main__":
     try:
         delete_empty_dir(DIR_PATH)
         pool.map(urls_crawler, urls)
-    except Exception as e:
+    except Exception:
         time.sleep(30)
         delete_empty_dir(DIR_PATH)
         pool.map(urls_crawler, urls)
